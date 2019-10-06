@@ -9,14 +9,13 @@ class Layout
 						<head>
 							<meta charset="utf-8">
 							<title>' . $title . '</title>
-							<link rel="stylesheet" src="/dist/app1.0.0.css" />
+							<link rel="stylesheet" href="/dist/app1.0.0.css" />
 							<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
-							</head>
+						</head>
 						<body>
-							<div class="container">
-								' . $data . '
-							</div>
-							</body>
+							<div id="app">' . $data . '</div>
+							<script src="/src/js/app.js"></script>
+						</body>
 					</html>
 			';
     }
