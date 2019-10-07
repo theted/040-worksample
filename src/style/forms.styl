@@ -6,6 +6,13 @@ input, select, textarea, button
   padding: 1em
   border-radius: .5em
   margin-bottom: .5em
+  transition: all 450ms
+  background: #efefef
+  border: 1px solid #ccc
+  &:focus
+    border: 1px solid blue
+  &:invalid
+    background: red
 
 input, select, label
   width: 100%

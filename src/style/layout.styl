@@ -18,15 +18,13 @@ body
 section
   width: 100%
   padding: 2em
-  outline: 1px solid blue
 
 .box
   display: grid
   grid-template-columns: 1fr 1fr
   grid-gap: 1em
+  @media screen and (max-width: 700px)
+    grid-template-columns: 1fr
 
 #company
   background: ALT
-
-h2, label
-  width: 100%

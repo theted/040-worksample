@@ -1,0 +1,24 @@
+/*!
+ * Tables
+ */
+@import "config"
+
+table
+  width: 100%
+  margin: 1em 0
+  border-collapse: collapse
+  tr
+    background: rgba(250, 250, 250, 0.1)
+    &:nth-child(even)
+      background: rgba(200, 200, 200, 0.3)
+    td
+      border: 1px solid BORDERCOLOR
+      padding: 0.8em 1.2em
+
+  thead
+    th
+      padding: .4em
+      border-left: 1px solid BORDERCOLOR
+
+      &:first-of-type
+        border-left: none
