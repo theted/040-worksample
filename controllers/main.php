@@ -13,17 +13,6 @@ class Main
         $this->user = new User(); // TODO: rename!
     }
 
-    public function rederCourse($course)
-    {
-        $output = "";
-        $output .= "<div>";
-        $output .= $course['name'];
-        $output .= "</div>";
-        return $output;
-    }
-
-    // form stuff
-
     public function input($name, $label, $placeholder = false)
     {
         if (!$placeholder) {
@@ -82,21 +71,17 @@ class Main
 
             <section id="participants">
               <h2>Participants</h2>
-
-              <div class="participant">
-                <h3>Participant #1</h3>
-                ' . $this->input('participant1_name', 'Name') . '
-                ' . $this->input('participant1_phone', 'Phone') . '
-                ' . $this->input('participant1_email', 'Email') . '
-              </div>
-
-
               <course-participant id="1"></course-participant>
 
-              <button id="add-participant">Add a participant</button>
-            </div>
+            </section>
 
-            <button>Submit</button>
+            <section>
+              <button id="add-participant">Add a participant</button>
+            </section>
+
+            <section>
+              <button>Submit</button>
+            </section>
 
           </form>
         ';
@@ -108,6 +93,7 @@ class Main
         return json_encode($this->courses->data);
     }
 
+    // TODO: optimize! use a separated table view for tis
     public function renderUsersList($users)
     {
         $output = "<table>";
@@ -137,15 +123,20 @@ class Main
         // TODO: validation
         // TODO: refactorisation!
         if (!empty($_POST)) {
-
-            $registerResult = $this->user->register($_POST);
-            debug($_POST);
-            die($registerResult);
+            $this->user->register($_POST);
+            $output = "<h2>Application registered, thank you!</h2>";
+            return $output;
         }
 
         // TODO: implement a router instead
+        if (!isset($_GET['page'])) {
+            $_GET['page'] = 'default';
+        }
+
         switch ($_GET['page']) {
-            default:break;
+            default:
+                $output .= $this->renderForms();
+                break;
 
             // output courses data as JSON
             case 'data':
@@ -156,14 +147,9 @@ class Main
             case 'list':
                 $users = $this->user->listUsers();
                 $output .= $this->renderUsersList($users);
-                // debug($users);
-                // die('We list stuff here...');
-                // exit;
                 break;
 
         }
-
-        $output .= $this->renderForms();
 
         return $output;
     }
