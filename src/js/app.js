@@ -6,6 +6,7 @@ let numParticipants = 1
 // add button bindings
 addParticipantButton.addEventListener('click', event => {
   event.preventDefault()
+  console.log('Creating new participant...')
   let newParticipant = document.createElement('course-participant')
   newParticipant.setAttribute('id', ++numParticipants)
   participantsElem.appendChild(newParticipant)
@@ -48,8 +49,10 @@ addParticipantButton.addEventListener('click', event => {
 class CourseParticipant extends window.HTMLElement {
   constructor() {
     super()
-    const template = document.createElement('template')
-    template.innerHTML = /* html */ `
+  }
+
+  init() {
+    this.innerHTML = /* html */ `
         <div class="participant">
           <h3>Participant</h3>
           
@@ -64,28 +67,12 @@ class CourseParticipant extends window.HTMLElement {
         </div>
       `
 
-    const cssTemplate = document.createElement('template')
-    cssTemplate.innerHTML = /* html */`
-        <style>
-          :host label, :host input {
-           width: 100%;
-           display: block;
-          }
-        </style>
-      `
+    this._titleElem = this.querySelector('h3')
+    this._nameElem = this.querySelector('input[name="name"]')
+    this._phoneElem = this.querySelector('input[name="phone"]')
+    this._emailElem = this.querySelector('input[name="email"]')
 
-
-    this.attachShadow({ mode: 'open' })
-    this.shadowRoot.appendChild(template.content.cloneNode(true))
-    this.shadowRoot.appendChild(cssTemplate.content.cloneNode(true))
-
-    this._titleElem = this.shadowRoot.querySelector('h3')
-    this._nameElem = this.shadowRoot.querySelector('input[name="name"]')
-    this._phoneElem = this.shadowRoot.querySelector('input[name="phone"]')
-    this._emailElem = this.shadowRoot.querySelector('input[name="email"]')
-  }
-
-  init() {
+    console.log(this._titleElem, '...')
     this._titleElem.textContent = 'Participant #' + this.id
     this._nameElem.setAttribute('name', 'participant' + this.id + '_name')
     this._phoneElem.setAttribute('name', 'participant' + this.id + '_phone')
