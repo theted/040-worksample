@@ -72,7 +72,6 @@ class Main
             <section id="participants">
               <h2>Participants</h2>
               <course-participant id="1"></course-participant>
-
             </section>
 
             <section>
@@ -93,23 +92,32 @@ class Main
         return json_encode($this->courses->data);
     }
 
-    // TODO: optimize! use a separated table view for tis
+    // TODO: optimize! use a separated table view for this
     public function renderUsersList($users)
     {
         $output = "<table>";
         $output .= "<thead>
         <tr>
-          <th>Name</th>
+          <th>Course ID</th>
+          <th>Date</th>
+          <th>Company</th>
+          <th>Phone</th>
+          <th>Email</th>
         </tr>
-          </thead>";
-
-        debug($users);
+          </thead>
+          <tbody>";
 
         foreach ($users as $key => $user) {
-            $output .= '<tr><td>' . $user['name'] . 'x</td></tr>';
+            $output .= '<tr>
+              <td>' . $user['course'] . '</td>
+              <td>' . $user['date'] . '</td>
+              <td>' . $user['name'] . '</td>
+              <td>' . $user['phone'] . '</td>
+              <td>' . $user['email'] . '</td>
+            </tr>';
         }
 
-        $output .= "</table>";
+        $output .= "</tbody></table>";
 
         return $output;
     }
