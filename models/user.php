@@ -34,18 +34,11 @@ class User
             ++$i;
 
             if (isset($_POST['participant' . $i . '_name'])) {
-                echo "have participant #$i...<br>";
 
                 // create participant
                 $name = $_POST['participant' . $i . '_name'];
                 $phone = $_POST['participant' . $i . '_phone'];
                 $email = $_POST['participant' . $i . '_email'];
-
-                debug([
-                    'name' => $name,
-                    'phone' => $phone,
-                    'email' => $email,
-                ]);
 
                 // create participant in db
                 $result = $this->db->connection->prepare('INSERT INTO participants (application_id, name, phone, email) VALUES (:application_id,:name,:phone,:email)');
