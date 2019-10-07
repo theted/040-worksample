@@ -17,12 +17,12 @@ Install dependencies
 npm install
 ```
 
-Build
+Build static assets
 ```
-gulp build
+npm run build
 ```
 
-Watch
+Watch assets; re-build as needed
 ```
-gulp watch
+npm run watch
 ```
