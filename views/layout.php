@@ -13,8 +13,10 @@ class Layout
 							<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
 						</head>
 						<body>
+							<a href="/?page=list">List registered users</a>
+							<a href="/">Register participant</a>
 							<div id="app">' . $data . '</div>
-							<script src="/src/js/app.js"></script>
+							<script src="/dist/app.js"></script>
 						</body>
 					</html>
 			';
