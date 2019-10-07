@@ -64,20 +64,32 @@ class CourseParticipant extends window.HTMLElement {
         </div>
       `
 
+    const cssTemplate = document.createElement('template')
+    cssTemplate.innerHTML = /* html */`
+        <style>
+          :host label, :host input {
+           width: 100%;
+           display: block;
+          }
+        </style>
+      `
+
+
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(template.content.cloneNode(true))
+    this.shadowRoot.appendChild(cssTemplate.content.cloneNode(true))
 
     this._titleElem = this.shadowRoot.querySelector('h3')
     this._nameElem = this.shadowRoot.querySelector('input[name="name"]')
     this._phoneElem = this.shadowRoot.querySelector('input[name="phone"]')
     this._emailElem = this.shadowRoot.querySelector('input[name="email"]')
-
-    this.init()
   }
 
   init() {
     this._titleElem.textContent = 'Participant #' + this.id
-    console.log('set-element...')
+    this._nameElem.setAttribute('name', 'participant' + this.id + '_name')
+    this._phoneElem.setAttribute('name', 'participant' + this.id + '_phone')
+    this._emailElem.setAttribute('name', 'participant' + this.id + '_email')
   }
 
   setId(id) {
