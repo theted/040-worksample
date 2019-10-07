@@ -60,6 +60,16 @@ class User
         $query = $this->db->connection->prepare("SELECT * FROM users");
         $query->execute();
         $result = $query->fetchAll();
+
+        // TODO: get participants for each user
+        foreach ($result as $key => $user) {
+            $id = $user['id'];
+            $query = $this->db->connection->prepare("SELECT * FROM participants WHERE application_id = $id");
+            $query->execute();
+            $users = $query->fetchAll();
+            $result[$key]['users'] = $users;
+        }
+
         return $result;
     }
 

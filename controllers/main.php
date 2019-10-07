@@ -103,18 +103,32 @@ class Main
           <th>Company</th>
           <th>Phone</th>
           <th>Email</th>
+          <th>Participants</th>
         </tr>
           </thead>
           <tbody>";
 
         foreach ($users as $key => $user) {
+
+            $participants = "";
+
+            // prepare partipiants
+            // TODO: would make prettier if had more time!
+            foreach ($user['users'] as $key => $participant) {
+                $participants .= "Participant #$key:<br />" .
+                    "NAME: " . $participant['name'] . '<br />'
+                    . "PHONE: " . $participant['phone'] . '<br />'
+                    . "EMAIL: " . $participant['email'] . '<br /><br />';
+            }
+
             $output .= '<tr>
               <td>' . $user['course'] . '</td>
               <td>' . $user['date'] . '</td>
               <td>' . $user['name'] . '</td>
               <td>' . $user['phone'] . '</td>
               <td>' . $user['email'] . '</td>
-            </tr>';
+              <td>' . $participants . '</td>
+              </tr>';
         }
 
         $output .= "</tbody></table>";
