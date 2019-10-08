@@ -9,16 +9,25 @@ class CourseParticipant extends window.HTMLElement {
         <div class="participant">
           <h3>Participant</h3>
           
-          <label for="name">Name</label>
-          <input name="name" />
-          
-          <label for="name">Phone number</label>
-          <input name="phone" />
-          
-          <label for="name">Email</label>
-          <input name="email" />
+          <div class="columns">
+
+            <div >
+              <label for="name">Name</label>
+              <input name="name" />
+            </div>
+            
+            <div >
+              <label for="name">Phone number</label>
+              <input name="phone" />
+            </div>
+
+            <div>
+              <label for="name">Email</label>
+              <input name="email" />
+            </div>
+          </div>
         </div>
-      `
+        `
 
     this._titleElem = this.querySelector('h3')
     this._nameElem = this.querySelector('input[name="name"]')

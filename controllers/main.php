@@ -59,11 +59,8 @@ class Main
 
             <section id="company">
               <h2>Company</h2>
-              <div class="box">
+              <div class="columns">
                 ' . $this->input('company', 'Company name') . '
-              </div>
-
-              <div class="box">
                 ' . $this->input('email', 'Email') . '
                 ' . $this->input('phone', 'Phone number') . '
               </div>
@@ -150,12 +147,15 @@ class Main
             return $output;
         }
 
-        // TODO: implement a router instead
+        // quick&dirty fix for undefined query params
         if (!isset($_GET['page'])) {
             $_GET['page'] = 'default';
         }
 
+        // TODO: implement a router instead
         switch ($_GET['page']) {
+
+            // render register particpant form
             default:
                 $output .= $this->renderForms();
                 break;
@@ -166,6 +166,7 @@ class Main
                 exit;
                 break;
 
+            // render registered course users & participants
             case 'list':
                 $users = $this->user->listUsers();
                 $output .= $this->renderUsersList($users);
