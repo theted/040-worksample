@@ -13,15 +13,11 @@ class Main
         $this->user = new User(); // TODO: rename!
     }
 
-    public function input($name, $label, $placeholder = false)
+    public function input($name, $label)
     {
-        if (!$placeholder) {
-            $placeholder = $label;
-        }
-
         $output = "<div>";
         $output .= "<label for=\"$name\">$label</label>";
-        $output .= "<input name=\"$name\" placeholder=\"$placeholder\" required />";
+        $output .= "<input name=\"$name\" required />";
         $output .= "</div>";
         return $output;
     }
@@ -52,7 +48,7 @@ class Main
             <section id="course">
               <h2>Course</h2>
               <div class="box">
-                ' . $this->select("course", $this->courses->data) . '
+                ' . $this->select("course", []) . '
                 ' . $this->select("date", []) . '
               </div>
             </section>

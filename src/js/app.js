@@ -6,4 +6,12 @@ let coursesData = {}
 
     const response = await fetch(endpoint)
     coursesData = await response.json()
+    let options = ['--Select course--']
+
+    for (let key in coursesData) {
+      options[coursesData[key].id] = coursesData[key].name
+    }
+
+    addSelectOption(options, selectElement)
+
   })()

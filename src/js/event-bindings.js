@@ -9,20 +9,28 @@ selectElement.addEventListener('change', (event) => {
   let val = event.target.value
   let dates = coursesData[val].dates
 
-  // remove current date options
-  while (dateElement.options.length > 0) {
-    dateElement.remove(dateElement.options.length - 1);
-  }
+  resetOptions(dateElement)
 
-  // add new data options
-  for (i = 0; i < dates.length; i++) {
-    var opt = document.createElement('option')
-    opt.appendChild(document.createTextNode(dates[i]));
-    opt.value = dates[i];
-    dateElement.appendChild(opt)
+  if (dates.length) {
+    addSelectOption(dates, dateElement)
   }
 
 })
+
+const addSelectOption = (options, element) => {
+  for (i = 0; i < options.length; i++) {
+    var opt = document.createElement('option')
+    opt.appendChild(document.createTextNode(options[i]));
+    opt.value = i;
+    element.appendChild(opt)
+  }
+}
+
+const resetOptions = element => {
+  while (element.options.length > 0) {
+    element.remove(element.options.length - 1);
+  }
+}
 
 // create new participant
 addParticipantButton.addEventListener('click', event => {
