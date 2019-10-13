@@ -7,15 +7,21 @@ const config = require('./config')
 const pug = require('gulp-pug')
 const stylus = require('gulp-stylus')
 const concat = require('gulp-concat')
+const rename = require('gulp-rename')
 const spawn = require('child_process').spawn
 
 // data.version = config.version
 config.pugConfig.data = data
 
+const pathbuilder = (path) => {
+  path.extname = ".php"
+}
+
 // compile pug -> HTML
 const html = () => src(config.paths.views)
   .pipe(pug(config.pugConfig))
-  .pipe(dest('dist'))
+  .pipe(rename((path) => { pathbuilder(path) }))
+  .pipe(dest('views'))
 
 // compile stylus -> HTML
 const css = () => src(config.paths.style)

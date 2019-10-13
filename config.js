@@ -12,13 +12,14 @@ module.exports = {
   path: 'dist/',
   bsFiles: 'dist/**/*.*',
   bsConfig: {
-    server: {
-      baseDir: './dist/'
-    },
+    // server: {
+    //   baseDir: './dist/'
+    // },
+    proxy: 'http://testning',
     files: [
       './src/**/*.*',
-      './dist/' + version + '.css',
-      './dist/' + version + '.js',
+      './dist/**/*.css',
+      './dist/**/*.js',
       './dist/**/*.html'
     ],
     browser: []
@@ -28,12 +29,15 @@ module.exports = {
     pretty: true,
     verbose: true
   },
+
+  // watch paths
   paths: {
-    js: baseSrc + 'js/**.js',
-    style: baseSrc + 'style/style.styl',
-    // style: baseSrc + 'style/**.styl',
-    views: baseSrc + 'content/**.pug'
+    js: baseSrc + 'js/**/*.js',
+    style: baseSrc + 'style/**/*.styl',
+    views: baseSrc + 'views/*.pug'
   },
+
+  // paths / nams for output files
   out: {
     css: version + '.css',
     js: version + '.js',
